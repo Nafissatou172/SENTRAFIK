@@ -1,0 +1,25 @@
+# Environments
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Hidden folders and files
+.*
+!.gitignore
+!.github/
+.pytest_cache/
+.vscode/
+.zencoder/
+.zenflow/
+
+# Logs and Models
+logs_custom_multienv/
+models_custom_multienv/
+
+# MacOS
+.DS_Store

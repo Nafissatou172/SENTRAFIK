@@ -1,0 +1,148 @@
+Ce projet est une implémentation d'apprentissage par renforcement (Reinforcement Learning) pour le contrôle de trafic urbain via SUMO. Il est spécifiquement conçu pour l'entraînement parallèle (multi-environnement) afin d'accélérer l'apprentissage des agents Co-DQL (Cooperative Deep Q-Learning).
+Voici la structure détaillée du code :
+
+📂 1. Le Cœur du Système (modules/)
+C'est ici que réside la logique métier de votre environnement personnalisé.
+environment.py : Définit votre classe d'environnement personnalisé (basé sur sumo_rl).
+observation.py : Contient les classes pour observer l'état du trafic (files d'attente, temps d'attente, véhicules d'urgence, états des voisins).
+reward.py : Définit la fonction de récompense (minimisation de l'attente, priorité aux urgences, etc.).
+config_loader.py & logging_config.py : Utilitaires pour charger la configuration (
+config.yaml) et gérer les logs.
+
+🚀 2. Entraînement et Exécution (Racine)
+Les scripts principaux pour lancer les processus.
+train_custom_multienv.py : Le script principal d'entraînement. Il orchestre l'apprentissage sur plusieurs environnements en parallèle (par défaut 4) pour accélérer la convergence.
+run_simulation.py : Permet de visualiser le résultat après entraînement. Il charge le meilleur modèle et lance une simulation (avec ou sans interface graphique SUMO).
+agent_stable_pytorch_corrected.py : Contient l'implémentation de l'agent Co-DQL (réseau de neurones, replay buffer, logique d'apprentissage).
+custom_env_wrapper.py : Un "wrapper" (enveloppe) crucial qui adapte votre environnement unique pour qu'il puisse être dupliqué et géré en parallèle par le script d'entraînement.
+`custom_env_wrapper.py` & `gym_env_wrapper.py`** : Ces fichiers adaptent l'environnement de simulation pour qu'il soit compatible avec l'interface `Gym/Gymnasium 
+Ils traduisent les états du trafic (positions des voitures, attentes) en "observations" pour l'IA et gèrent les "récompenses" (ex: réduction du temps d'attente).
+
+
+⚙️ 3. Configuration et Simulation
+config.yaml : Fichier central pour paramétrer l'expérience (taux d'apprentissage, durée des feux, nombre d'environnements, etc.).
+configuration_files/ : Fichiers spécifiques à SUMO.
+.net.xml : Le réseau routier (intersections, voies).
+.rou.xml : Les scénarios de trafic (véhicules, routes).
+
+📊 4. Résultats et Logs
+Ces dossiers sont générés automatiquement par les scripts.
+models_custom_multienv/ : Stocke les modèles entraînés (checkpoints et modèle final).
+logs_custom_multienv/ : Contient les logs pour TensorBoard (courbes d'apprentissage, récompenses moyennes).
+
+Vous définissez la logique dans modules/ et la config SUMO dans configuration_files/.
+train_custom_multienv.py utilise custom_env_wrapper.py pour créer plusieurs instances de votre environnement.
+Les agents (agent_...py) s'entraînent sur ces environnements en parallèle.
+Vous visualisez le résultat final avec 
+run_simulation.py.
+
+
+🚘 Comment Commencer ? : 
+
+python test_setup.py : pour tester la configuration de l'environnement ! 
+
+python train_custom_multienv.py --episodes 100 --num-envs 4 : pour lancer l'entraînement ! ps : avec 4  environnements  en parrallèle
+
+python run_simulation.py : pour lancer la simulation !
+
+🚀 Comment commencer l'entraînement du modèle Co-DQL ? : 
+# Activate the virtual environment
+source venv/bin/activate
+
+# Run a quick test with 2 parallel environments
+python train_custom_multienv.py --episodes 10 --num-envs 2
+
+✅ Entrainement complète avec 4 environments : 
+# Activate the virtual environment
+source venv/bin/activate
+
+# Train with 4 parallel environments (4x faster!)
+python train_custom_multienv.py --episodes 2500 --num-envs 4
+
+# With emergency vehicles
+python train_custom_multienv.py --episodes 2500 --num-envs 4 --use-emergency
+
+
+👀 Pour le monitoring complet de l'entraînement :
+# In a separate terminal, start TensorBoard
+source venv/bin/activate
+tensorboard --logdir logs_custom_multienv
+puis ouvrir le lien dans le navigateur  : Then open: http://localhost:6006
+
+
+📊Que verra-t-on avec ce monitoring ? 
+Training Output
+You'll see real-time metrics:
+
+- Episode rewards (higher is better)
+- Waiting times (lower is better)
+- Queue lengths (lower is better)
+- Training loss
+- Exploration rate (epsilon)
+
+Les modèles seront sauvegardés dans : 
+models_custom_multienv/best_model/ - Best performing model
+models_custom_multienv/checkpoint_episode_XXX/ - Periodic checkpoints
+models_custom_multienv/final/ - Final model after training
+
+Les logs seront sauvegardés dans : 
+logs_custom_multienv/ - TensorBoard logs
+logs/oraban.log - Application logs
+
+
+🎮 Visualiser les agents entrainés avec ou sans SUMO GUI ou sans véhicules d'urgences : 
+
+# Activate environment
+source venv/bin/activate
+
+# Simulation sur le GUI de SUMO  (watch the traffic lights!)
+python run_simulation.py --episodes 5
+
+Ces trois fichiers ont été ajoutés au projet d'origine : 
+✅ venv/ - Virtual environment
+✅ requirements.txt - Dependency list
+✅ test_setup.py - Setup verification script
+
+NB : Les dépendances sont en rouge mais tout fonctionne correctement !
+
+
+ 🚦 Utilitaires de Réseau (Trafic)
+#fix_network_phases.py`, `patch_phases.py` : Ces scripts servent à corriger ou modifier les phases des feux de signalisation dans les fichiers XML de SUMO. Ils assurent que l'IA a un contrôle cohérent sur les feux.
+#inspect_network.py`: Un outil d'analyse pour vérifier la structure des routes et des connexions avant de lancer l'IA.
+
+ 📑 Documentation et Métadonnées
+`AMBULANCES_ADDED.md` : Semble indiquer une fonctionnalité spécifique où des véhicules prioritaires ont été intégrés, ce qui est souvent l'objectif de ces simulations (prioriser les secours).
+
+Le dossier tests/ est conçu spécifiquement pour tester les modules du dossier 
+modules/
+
+✅ Comment lancer les tests ?
+# Activer l'environnement virtuel
+source venv/bin/activate
+
+# Lancer tous les tests
+pytest tests/
+
+L'agent Co-DQL (Cooperative Deep Q-Learning) est implémenté et expérimenté principalement à travers deux fichiers Clés :
+
+1.agent_stable_pytorch_corrected.py (L'Implémentation de l'Agent)
+C'est ici que réside le "cerveau" de l'agent Co-DQL.
+
+- Réseau de Neurones (CoDQLNetwork) : Définit l'architecture Deep Learning (couches cachées, activation ReLU).
+- Classe StableCoDQLAgent : Gère l'apprentissage (méthode learn), le choix d'actions (select_action avec epsilon-greedy), et la mémoire d'expérience (ReplayBuffer).
+- Coopération : C'est ici que la coopération est gérée, probablement via le partage de paramètres ou d'expériences entre agents voisins (d'où le "Co" de Co-DQL).
+
+2. train_custom_multienv.py (L'Expérimentation / Entraînement)
+C'est le script qui orchestre l'expérience globale.
+
+- Création des Agents : Il instancie 16 agents StableCoDQLAgent (un par intersection : A0, A1, ..., D3).
+- Boucle d'Entraînement : Il fait tourner les environnements en parallèle, collecte les expériences (état, action, récompense, état suivant) et déclenche l'apprentissage des agents.
+- Evaluation : Périodiquement, il teste les agents sans exploration (epsilon=0) pour voir leur performance réelle.
+- Sauvegarde : Il enregistre les modèles entraînés dans models_custom_multienv/.
+
+Résumé
+Où est le code Co-DQL ? ->  agent_stable_pytorch_corrected.py
+Où lance-t-on l'expérience ? ->  train_custom_multienv.py
+Si vous voulez modifier l'algorithme Co-DQL lui-même (changer l'architecture du réseau ou la règle d'apprentissage), c'est dans 
+agent_stable_pytorch_corrected.py
+ qu'il faut aller !

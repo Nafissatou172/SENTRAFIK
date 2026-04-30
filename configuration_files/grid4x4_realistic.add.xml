@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+    Additional Configuration File for Realistic Traffic Simulation
+    Contains vehicle type distributions, rerouters, and other elements
+-->
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+
+    <!-- Variable Speed Signs for traffic management -->
+    <variableSpeedSign id="vss_A0B0" lanes="A0B0_0 A0B0_1 A0B0_2">
+        <step time="0" speed="13.89"/>
+        <step time="1800" speed="11.11"/>
+        <step time="2700" speed="13.89"/>
+    </variableSpeedSign>
+    
+    <variableSpeedSign id="vss_B2C2" lanes="B2C2_0 B2C2_1 B2C2_2">
+        <step time="0" speed="13.89"/>
+        <step time="1200" speed="8.33"/>
+        <step time="2400" speed="13.89"/>
+    </variableSpeedSign>
+
+    <!-- Rerouters for dynamic traffic management -->
+    <rerouter id="rerouter_left0" edges="left0A0" probability="0.1">
+        <interval begin="0" end="3600">
+            <destProbReroute id="A3top0" probability="0.3"/>
+            <destProbReroute id="D0bottom3" probability="0.3"/>
+            <destProbReroute id="D3right3" probability="0.4"/>
+        </interval>
+    </rerouter>
+    
+    <rerouter id="rerouter_bottom1" edges="bottom1B0" probability="0.1">
+        <interval begin="0" end="3600">
+            <destProbReroute id="B3top1" probability="0.4"/>
+            <destProbReroute id="D3right3" probability="0.3"/>
+            <destProbReroute id="A3left3" probability="0.3"/>
+        </interval>
+    </rerouter>
+
+    <!-- Calibrators removed - they conflict with flow definitions in route file and need vType definitions -->
+    <!-- Uncomment and adjust if needed:
+    <calibrator id="calibrator_left0" edge="left0A0" pos="10" period="300">
+        <flow begin="0" end="3600" vehsPerHour="500" speed="13.89"/>
+    </calibrator>
+    -->
+
+    <!-- Parking Areas (realistic urban features) -->
+    <parkingArea id="parking_B2" lane="B2C2_0" startPos="10" endPos="50" roadsideCapacity="20">
+        <space x="700" y="700"/>
+    </parkingArea>
+    
+    <parkingArea id="parking_C2" lane="C2B2_0" startPos="10" endPos="50" roadsideCapacity="25">
+        <space x="800" y="700"/>
+    </parkingArea>
+    
+    <parkingArea id="parking_B1" lane="B1C1_0" startPos="10" endPos="40" roadsideCapacity="15">
+        <space x="600" y="600"/>
+    </parkingArea>
+
+    <!-- Bus Stops for public transportation -->
+    <busStop id="busStop_A1" lane="A1B1_0" startPos="20" endPos="40" personCapacity="30">
+        <access lane="A1B1_0" pos="30" length="5"/>
+    </busStop>
+    
+    <busStop id="busStop_B2" lane="B2C2_0" startPos="20" endPos="40" personCapacity="40">
+        <access lane="B2C2_0" pos="30" length="5"/>
+    </busStop>
+    
+    <busStop id="busStop_C2" lane="C2D2_0" startPos="20" endPos="40" personCapacity="35">
+        <access lane="C2D2_0" pos="30" length="5"/>
+    </busStop>
+    
+    <busStop id="busStop_D1" lane="D1C1_0" startPos="20" endPos="40" personCapacity="30">
+        <access lane="D1C1_0" pos="30" length="5"/>
+    </busStop>
+    
+    <busStop id="busStop_B3" lane="B3C3_0" startPos="20" endPos="40" personCapacity="25">
+        <access lane="B3C3_0" pos="30" length="5"/>
+    </busStop>
+    
+    <busStop id="busStop_C1" lane="C1B1_0" startPos="20" endPos="40" personCapacity="25">
+        <access lane="C1B1_0" pos="30" length="5"/>
+    </busStop>
+
+    <!-- Charging Stations for electric vehicles -->
+    <chargingStation id="charging_B2" lane="B2B1_0" startPos="60" endPos="80" power="50000" efficiency="0.95" chargeInTransit="0" chargeDelay="300"/>
+    
+    <chargingStation id="charging_C2" lane="C2C1_0" startPos="60" endPos="80" power="50000" efficiency="0.95" chargeInTransit="0" chargeDelay="300"/>
+    
+    <!-- Parking for charging stations -->
+    <parkingArea id="charging_parking_B2" lane="B2B1_0" startPos="85" endPos="105" roadsideCapacity="4">
+        <space x="700" y="650"/>
+    </parkingArea>
+    
+    <parkingArea id="charging_parking_C2" lane="C2C1_0" startPos="85" endPos="105" roadsideCapacity="4">
+        <space x="800" y="650"/>
+    </parkingArea>
+
+    <!-- E1 Detectors for traffic monitoring -->
+    <inductionLoop id="det_A0B0" lane="A0B0_0" pos="100" freq="60" file="detectors.xml"/>
+    <inductionLoop id="det_B2C2" lane="B2C2_0" pos="100" freq="60" file="detectors.xml"/>
+    <inductionLoop id="det_C2D2" lane="C2D2_0" pos="100" freq="60" file="detectors.xml"/>
+    <inductionLoop id="det_D1D2" lane="D1D2_0" pos="100" freq="60" file="detectors.xml"/>
+    
+    <!-- E2 Detectors removed - lane configuration issues -->
+    <!-- Multi-lane detectors require special configuration with lane groups -->
+
+    <!-- Vaporizers (traffic reduction zones) -->
+    <!-- Can be used to simulate special events or restricted zones -->
+    <!-- Uncomment if needed
+    <vaporizer id="vaporizer_center" begin="1800" end="2400" edge="B2C2"/>
+    -->
+
+    <!-- Polygon shapes for visualization (landmarks, buildings, etc.) -->
+    <poly id="building_commercial_center" type="building" color="0.8,0.8,0.8" fill="1" layer="0" shape="750,750 750,850 850,850 850,750"/>
+    
+    <poly id="building_office_1" type="building" color="0.7,0.7,0.9" fill="1" layer="0" shape="550,650 550,750 650,750 650,650"/>
+    
+    <poly id="park_area" type="greenspace" color="0.2,0.8,0.2" fill="1" layer="0" shape="400,400 400,500 500,500 500,400"/>
+
+    <!-- POIs (Points of Interest) -->
+    <poi id="hospital" type="hospital" color="1,0,0" layer="2" x="600" y="600" width="10" height="10"/>
+    <poi id="school" type="school" color="1,1,0" layer="2" x="800" y="800" width="10" height="10"/>
+    <poi id="shopping_mall" type="shopping" color="0,0,1" layer="2" x="750" y="750" width="15" height="15"/>
+    <poi id="train_station" type="railway_station" color="0.5,0.5,0.5" layer="2" x="500" y="1000" width="20" height="20"/>
+
+</additional>
+

@@ -1,0 +1,57 @@
+================================================================================
+  SENTRAFIK — CONFIGURATION DE LA SIMULATION (BRT DAKAR)
+  Résumé des paramètres actuels et justifications techniques
+================================================================================
+
+1. PAS DE TEMPS (step-length) : 1s
+--------------------------------------------------------------------------------
+VALEUR : 1 seconde 
+POURQUOI : C'est le meilleur compromis entre réalisme et performance. Avec 10 
+calculs par seconde, la simulation reste fluide pour les bus BRT et permet de 
+capturer les accélérations/freinages de manière réaliste. C'est 20x plus rapide 
+que ton réglage initial (0.05s).
+
+2. DURÉE DE LA SIMULATION (end) : 1800s
+--------------------------------------------------------------------------------
+VALEUR : 1800 secondes (30 minutes)
+POURQUOI : Initialement réglée sur 1 heure (3600s), nous l'avons réduite à 
+30 minutes pour accélérer tes tests et l'entraînement de l'IA. 30 minutes de 
+trafic intense sont suffisantes pour évaluer la fluidité aux carrefours.
+
+3. FRÉQUENCE DES BUS (period) : 120s
+--------------------------------------------------------------------------------
+VALEUR : 120 secondes (2 minutes)
+POURQUOI : Dans la réalité, le BRT circule toutes les 6 minutes (360s). Pour 
+la simulation, nous avons réduit cet intervalle à 2 minutes pour "saturer" la 
+voie BRT. Cela permet à ton IA de collecter plus de données sur les bus en un 
+temps plus court, accélérant ainsi son apprentissage.
+
+4. RÉSOLUTION LATÉRALE (lateral-resolution) : 0.1m
+--------------------------------------------------------------------------------
+VALEUR : 0.1 mètre
+POURQUOI : Très haute précision pour les déplacements latéraux. Cela permet 
+aux véhicules de se décaler de manière très fine sur leur voie. Indispensable 
+si tu veux simuler des véhicules qui "partagent" une même voie physique en se 
+doublant (Sublane model).
+
+5. IMPERFECTION DU CONDUCTEUR (sigma) : 0.0 (BRT) / 0.6 (Autres)
+--------------------------------------------------------------------------------
+VALEUR : 0.0 pour le BRT / 0.6 pour les voitures/cars-rapides
+POURQUOI : 
+- BRT (0.0) : Représente une conduite parfaite et professionnelle (automatisée 
+  ou chauffeurs formés). Le bus suit sa trajectoire sans erreur.
+- AUTRES (0.6) : Simule le comportement humain plus "erratique" des autres 
+  véhicules (retards de réaction, petites erreurs), ce qui est très présent 
+  dans le trafic d'Afrique de l'Ouest.
+
+6. RÉSOLUTION DES FEUX DE SIGNALISATION
+--------------------------------------------------------------------------------
+DÉTAIL : Analyse de 150 points de contrôle.
+POURQUOI :le script traffic_metrics.py scanne chaque intersection pour 
+calculer le temps d'attente cumulé, ce qui te servira de récompense (reward) 
+pour ton agent d'apprentissage par renforcement.
+
+================================================================================
+Note : Pour un rapport final "fidèle à 100% à la réalité", il est conseillé de 
+repasser la fréquence (period) à 360s et la durée à 3600s.
+================================================================================

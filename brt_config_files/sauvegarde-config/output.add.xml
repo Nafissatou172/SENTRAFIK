@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-03-10T14:45:35.916930+00:00 by Eclipse SUMO netedit 1.25.0
+-->
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <!-- StoppingPlaces -->
+    <busStop id="Dalal_Jam_0" lane="E2_0" startPos="7.33" endPos="17.33" friendlyPos="1"/>
+    <busStop id="Dalal_Jam_1" lane="-429776123#1_0" startPos="28.23" endPos="38.23" friendlyPos="1" lines="B1 B2"/>
+    <busStop id="Fith_Mith_0" lane="191300482#6_2" startPos="19.71" endPos="29.71" friendlyPos="1" lines="B1 B2"/>
+    <busStop id="Fith_Mith_1" lane="167186736#2_2" startPos="20.52" endPos="30.52" friendlyPos="1" lines="B1"/>
+    <busStop id="Grand_Dakar_0" lane="257631035#9_2" startPos="8.90" endPos="18.90" friendlyPos="1" lines="B1"/>
+    <busStop id="Grand_Dakar_1" lane="243919322#8_2" startPos="3.91" endPos="13.91" friendlyPos="1" lines="B1"/>
+    <busStop id="Grande_Mosque_0" lane="25860929#7_2" startPos="5.50" endPos="15.50" friendlyPos="1" lines="B1"/>
+    <busStop id="Grande_Mosque_1" lane="108821767#1_2" startPos="14.84" endPos="24.84" friendlyPos="1" lines="B1"/>
+    <busStop id="Golf_Nord_0" lane="179793860#2_2" startPos="4.46" endPos="14.46" friendlyPos="1" lines="B1"/>
+    <busStop id="Golf_Nord_1" lane="340562881#9_2" startPos="8.11" endPos="18.11" friendlyPos="1" lines="B1"/>
+    <busStop id="Golf_Sud_0" lane="643232332#31_2" startPos="6.12" endPos="16.12" friendlyPos="1" lines="B1"/>
+    <busStop id="Golf_Sud_1" lane="1239660857#6_2" startPos="80.36" endPos="90.36" friendlyPos="1" lines="B1"/>
+    <busStop id="Grand_Medine_0" lane="517797930#4_2" startPos="18.93" endPos="28.93" friendlyPos="1" lines="B1 B2"/>
+    <busStop id="Grand_Medine_1" lane="1263442474#0_2" startPos="96.72" endPos="106.72" friendlyPos="1" lines="B1 B2"/>
+    <busStop id="Gueule_tapee_0" lane="335895807#3_2" startPos="6.44" endPos="16.44" friendlyPos="1" lines="B1"/>
+    <busStop id="Gueule_tapee_1" lane="340565102#8_2" startPos="9.48" endPos="19.48" lines="B1"/>
+    <busStop id="Hy_Thiandoum_0" lane="361945156#25_2" startPos="31.61" endPos="41.61" friendlyPos="1" lines="B1"/>
+    <busStop id="Hy_Thiandoum_1" lane="576084995#3_2" startPos="30.56" endPos="40.56" friendlyPos="1" lines="B1"/>
+    <busStop id="Ndingala_0" lane="643232332#14_2" startPos="42.87" endPos="52.87" friendlyPos="1" lines="B1"/>
+    <busStop id="Ndingala_1" lane="1239660857#18_2" startPos="62.92" endPos="72.92" friendlyPos="1" lines="B1"/>
+    <busStop id="Papa_Gueye_Fall_0" lane="25860753#0_2" startPos="6.55" endPos="16.55" friendlyPos="1" lines="B1 B2"/>
+    <busStop id="Papa_Gueye_Fall_1" lane="217821811#5_2" startPos="212.26" endPos="222.26" friendlyPos="1" lines="B1 B2"/>
+    <busStop id="Parcelles_0" lane="643232332#7_2" startPos="141.68" endPos="151.68" friendlyPos="1" lines="B1"/>
+    <busStop id="Parcelles_1" lane="1239660857#29_2" startPos="50.01" endPos="60.01" friendlyPos="1" lines="B1"/>
+    <busStop id="Police_Parcelles_0" lane="337042518#9_2" startPos="54.34" endPos="64.34" friendlyPos="1" lines="B1"/>
+    <busStop id="Police_Parcelles_1" lane="431665138#2_2" startPos="39.46" endPos="49.46" friendlyPos="1" lines="B1"/>
+    <busStop id="Pref_Guediawaye_0" name="Préfecture Guediawaye" lane="E56_0" startPos="11.91" endPos="21.91" friendlyPos="1" lines="B1 B2"/>
+    <busStop id="Pref_Guediawaye_1" name="Préfecture Guediawaye" lane="E55_0" startPos="6.18" endPos="16.18" friendlyPos="1" lines="B1 B2"/>
+    <busStop id="bs_0" lane="197286087#5_2" startPos="32.49" endPos="42.49" lines="B1"/>
+    <busStop id="croisement22_0" lane="1239668449#8_2" startPos="22.68" endPos="32.68" friendlyPos="1" lines="B1"/>
+    <busStop id="croisement22_1" lane="441226503#0_2" startPos="58.25" endPos="68.25" friendlyPos="1" lines="B1"/>
+    <busStop id="dial_diop_0" lane="395950808#2_2" startPos="17.81" endPos="27.81" friendlyPos="1" lines="B1"/>
+    <busStop id="dial_diop_1" lane="197286087#5_2" startPos="32.60" endPos="42.60" friendlyPos="1" lines="B1"/>
+    <busStop id="khar_yallah_0" lane="361945156#5_2" startPos="22.30" endPos="32.30" friendlyPos="1" lines="B1"/>
+    <busStop id="khar_yallah_1" lane="576084995#15_2" startPos="20.04" endPos="30.04" friendlyPos="1" lines="B1"/>
+    <busStop id="liberte1_0" lane="166458110#6_2" startPos="18.45" endPos="28.45" friendlyPos="1" lines="B1"/>
+    <busStop id="liberte1_1" lane="164511678#3_2" startPos="9.15" endPos="19.15" friendlyPos="1" lines="B1"/>
+    <busStop id="liberte5_0" lane="23513087#1_2" startPos="341.68" endPos="351.68" friendlyPos="1" lines="B1"/>
+    <busStop id="liberte5_1" lane="23513115#0_2" startPos="145.56" endPos="155.56" friendlyPos="1" lines="B1"/>
+    <busStop id="liberte6_0" lane="23513103#0_2" startPos="629.46" endPos="639.46" friendlyPos="1" lines="B1"/>
+    <busStop id="liberte6_1" lane="23513102#2_2" startPos="71.97" endPos="81.97" friendlyPos="1" lines="B1"/>
+    <busStop id="place_nation_0" lane="-E40_0" startPos="17.41" endPos="27.41" friendlyPos="1" lines="B1 B2"/>
+    <busStop id="place_nation_1" lane="E40_0" startPos="74.24" endPos="84.24" friendlyPos="1" lines="B1 B2"/>
+    <busStop id="scat_urbam_0" lane="361945156#9_2" startPos="19.80" endPos="29.80" friendlyPos="1" lines="B1"/>
+    <busStop id="scat_urbam_1" lane="576084995#10_2" startPos="94.05" endPos="104.05" friendlyPos="1" lines="B1"/>
+    <busStop id="sacre_coeur_0" lane="27294315#3_2" startPos="15.63" endPos="25.63" friendlyPos="1" lines="B1"/>
+    <busStop id="sacre_coeur_1" lane="252664251#1_2" startPos="26.36" endPos="36.36" friendlyPos="1" lines="B1"/>
+</additional> 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+    SUMO Configuration File for Realistic Traffic Simulation
+    With 2000 vehicles and 500 pedestrians
+-->
+
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="grid4x4.net.xml"/>
+        <route-files value="grid4x4_realistic.rou.xml"/>
+        <additional-files value="grid4x4_realistic.add.xml"/>
+    </input>
+
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+        <step-length value="1.0"/>
+    </time>
+
+    <processing>
+        <time-to-teleport value="60"/>
+        <max-depart-delay value="300"/>
+        <routing-algorithm value="dijkstra"/>
+        <lateral-resolution value="0.8"/>
+        <ignore-route-errors value="true"/>
+        <collision.action value="warn"/>
+        <tls.all-off value="false"/>
+    </processing>
+
+    <routing>
+        <device.rerouting.probability value="0.5"/>
+        <device.rerouting.period value="60"/>
+        <device.rerouting.adaptation-steps value="30"/>
+        <device.rerouting.with-taz value="false"/>
+        <device.rerouting.adaptation-interval value="10"/>
+    </routing>
+
+    <report>
+        <verbose value="false"/>
+        <no-step-log value="true"/>
+        <duration-log.statistics value="true"/>
+        <no-warnings value="true"/>
+    </report>
+
+    <gui_only>
+        <gui-settings-file value="grid4x4.view.xml"/>
+        <start value="true"/>
+        <quit-on-end value="false"/>
+    </gui_only>
+
+</sumoConfiguration>
+

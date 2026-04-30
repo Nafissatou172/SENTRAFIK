@@ -1,0 +1,89 @@
+# Oraban Traffic Signal Control - Configuration
+# =============================================
+# This file contains all configurable parameters for the project.
+# Environment variables can override these settings using the prefix ORABAN_
+
+# SUMO Environment Configuration
+environment:
+  # Network and route files
+  net_file: "configuration_files/grid4x4.net.xml"
+  route_file_emergency: "configuration_files/grid4x4_realistic.rou.xml"
+  route_file_no_emergency: "configuration_files/grid4x4_no_emergency.rou.xml"
+  
+  # SUMO simulation parameters
+  delta_time: 10          # Seconds between actions
+  yellow_time: 5          # Yellow phase duration
+  min_green: 10           # Minimum green phase duration
+  max_green: 50           # Maximum green phase duration
+  num_seconds: 1800       # Total simulation duration
+  sumo_warnings: false    # Show SUMO warnings
+  
+  # Display settings
+  use_gui: false          # Show SUMO GUI (set true for debugging)
+
+# Training Configuration
+training:
+  # Parallel training
+  num_parallel_envs: 4    # Number of parallel environments
+  
+  # Learning parameters
+  learning_rate: 0.0003
+  gamma: 0.99             # Discount factor
+  tau: 0.005              # Target network soft update rate
+  
+  # Replay buffer
+  buffer_size: 100000
+  batch_size: 256
+  
+  # Exploration
+  epsilon_start: 1.0
+  epsilon_min: 0.01
+  epsilon_decay: 0.994
+  
+  # Stability
+  reward_scale: 0.01
+  gradient_clip: 10.0
+  update_target_every: 1000
+  
+  # Training loop
+  max_episodes: 2500
+  max_steps_per_episode: 1800
+  eval_frequency: 50
+  patience: 200           # Early stopping patience
+  
+  # Checkpoints
+  save_frequency: 100
+  checkpoint_dir: "models_custom_multienv"
+
+# Logging Configuration
+logging:
+  level: "INFO"           # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  log_dir: "logs"
+  log_to_file: true
+  log_to_console: true
+  max_file_size_mb: 10
+  backup_count: 5
+  use_colors: true
+
+# TensorBoard
+tensorboard:
+  enabled: true
+  log_dir: "logs_custom_multienv"
+
+# Observation Configuration
+observation:
+  include_queue: true
+  include_waiting_time: true
+  include_wave: true
+  include_phase: true
+  include_emergency: true
+  include_neighbors: true
+  neighbor_distance: 1
+  normalize: true
+
+# Reward Configuration
+reward:
+  queue_weight: 0.5
+  waiting_time_weight: 0.3
+  emergency_weight: 0.2
+  normalize: false

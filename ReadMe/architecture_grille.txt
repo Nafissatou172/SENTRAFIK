@@ -1,0 +1,56 @@
+L'architecture Grid 4x4 (Grille 4 par 4) est une structure de réseau routier en forme de damier, très courante dans la recherche sur le contrôle du trafic urbain.
+
+Voici une explication détaillée de ce à quoi cela ressemble dans votre projet SUMO :
+
+1. Structure Géométrique
+Imaginez un quadrillage parfait composé de :
+
+4 rues horizontales (Est-Ouest).
+4 rues verticales (Nord-Sud).
+Ces rues se croisent pour former exactement 16 intersections (4 x 4 = 16).
+
+2. Les Intersections (Les Agents)
+Dans votre projet, chaque intersection est contrôlée par un feu de circulation intelligent. C'est ce qu'on appelle un Agent en Apprentissage par Renforcement. Vos 16 agents sont nommés de manière logique :
+
+       Col 0	Col 1	Col 2	Col 3
+Ligne A	A0	    A1	A2	    A3
+Ligne B	B0	    B1	B2	    B3
+Ligne C	C0	C1	C2	    C3
+Ligne D	D0	D1	D2	    D3
+3. Architecture du Réseau (Connectivité)
+Les Voies (Edges) : Chaque intersection est reliée à ses voisines par des routes (généralement à double sens avec plusieurs voies par sens).
+Exemple : L'intersection B1 est reliée à A1 (Nord), C1 (Sud), B0 (Ouest) et B2 (Est).
+Flux de Trafic : Les voitures entrent par les bords de la grille (ex: par A0, A3, D0, D3) et tentent de traverser le réseau pour atteindre une autre sortie.
+Complexité Co-DQL : Le défi de cette architecture est que ce qui se passe à l'intersection A0 influence rapidement A1 et B0. C'est pour cela qu'on utilise le "Co" (Coopératif) dans Co-DQL : les feux doivent se coordonner pour créer des "ondes vertes".
+4. Pourquoi une grille 4x4 ?
+C'est un standard de test car :
+
+Réalisme Urbain : Elle simule bien les centres-villes (comme Manhattan).
+Nombre d'Agents : 16 agents est un bon chiffre pour tester la montée en charge. C'est assez complexe pour nécessiter de la coopération, mais assez petit pour s'entraîner en quelques heures.
+Topologie régulière : Cela permet de tester facilement le voisinage (chaque intersection a entre 2 et 4 voisins directs).
+En résumé
+Votre réseau est un damier de 16 feux de circulation connectés, où le but de votre algorithme est de synchroniser ces 16 cerveaux pour que le trafic traverse la grille le plus vite possible, sans que l'un d'eux ne crée un bouchon qui bloquerait ses voisins.
+
+Autres types de topologie : 
+
+1. Topologies de Base (Benchmarks)
+Intersection Unique (Single Intersection) : Un seul agent qui contrôle un seul feu. C'est le point de départ pour tester si un algorithme "comprend" les bases.
+Le Corridor (Corridor/Linear) : Plusieurs intersections alignées sur une seule grande avenue. Très utile pour tester la création d'Ondes Vertes (Green Waves).
+La Grille (Manhattan Grid) : Comme votre grille 4x4, mais elle peut varier (2x2, 3x3, 6x6, etc.). Elle simule les centres-villes denses.
+
+2. Topologies Spécifiques
+Le Rond-point (Roundabout) : Pour tester comment le RL gère la priorité à l'anneau sans feux, ou avec des feux à l'entrée.
+L'Anneau (Ring Road) : Une route circulaire sans fin. Souvent utilisé pour étudier comment supprimer les "embouteillages fantômes" (mouvements accordéons) créés par le comportement humain.
+L'Autoroute et ses bretelles (Highway & Ramps) : Pour optimiser l'insertion des véhicules (Ramp Metering) et éviter les ralentissements sur les voies rapides.
+
+3. Réseaux Réels (Real-world Maps)
+C'est l'étape ultime. 
+On utilise des outils comme OpenStreetMap pour importer de vraies villes dans SUMO. Les benchmarks célèbres incluent :
+
+Manhattan (NY) : Très complexe, des centaines d'agents.
+Luxembourg (LuST) : Un modèle très détaillé d'une ville entière avec des milliers de véhicules réalistes.
+Monaco & Bologna : Souvent utilisés pour des compétitions de recherche.
+
+4. Réseaux Académiques Célèbres
+Réseau de Braess : Utilisé pour démontrer le "Paradoxe de Braess" (où ajouter une route peut parfois augmenter le temps de trajet total).
+RESCO Benchmarks : Une collection de réseaux pré-configurés (Ingolstadt, Cologne, etc.) utilisés par les chercheurs du monde entier pour comparer leurs algorithmes (comme Co-DQL, QMIX, etc.) sur des bases identiques.

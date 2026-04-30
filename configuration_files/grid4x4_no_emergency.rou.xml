@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+    Realistic Traffic Simulation Configuration
+    - 2000 vehicles distributed across multiple routes
+    - 500 pedestrians distributed across the grid
+    - Simulation duration: 3600 seconds (1 hour)
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    
+    <!-- Vehicle Type Definitions - Optimized for better traffic flow -->
+    <vType id="car" vClass="passenger" length="5.0" minGap="3.0" maxSpeed="15.0" accel="2.0" decel="4.5" sigma="0.3" color="1,1,0" tau="1.5" jmDriveAfterRedTime="1.5" jmIgnoreJunctionFoeProb="0.1"/>
+    <vType id="car_fast" vClass="passenger" length="4.8" minGap="2.5" maxSpeed="18.0" accel="2.5" decel="5.0" sigma="0.2" color="1,0,0" tau="1.2" jmDriveAfterRedTime="1.0" jmIgnoreJunctionFoeProb="0.05"/>
+    <vType id="bus" vClass="bus" length="12.0" minGap="4.0" maxSpeed="12.0" accel="1.5" decel="3.0" sigma="0.3" color="0,1,0" tau="2.0" jmDriveAfterRedTime="2.0" jmIgnoreJunctionFoeProb="0.2"/>
+    <vType id="truck" vClass="truck" length="8.0" minGap="4.0" maxSpeed="11.0" accel="1.5" decel="3.5" sigma="0.3" color="0,0,1" tau="2.5" jmDriveAfterRedTime="2.5" jmIgnoreJunctionFoeProb="0.15"/>
+    <vType id="delivery" vClass="delivery" length="6.5" minGap="3.5" maxSpeed="13.0" accel="1.8" decel="3.8" sigma="0.3" color="0.5,0.5,0.5" tau="1.8" jmDriveAfterRedTime="1.8" jmIgnoreJunctionFoeProb="0.1"/>
+    <vType id="emergency" vClass="emergency" length="6.0" minGap="2.0" maxSpeed="20.0" accel="3.5" decel="6.0" sigma="0.2" color="1,0,1" tau="1.0" jmDriveAfterRedTime="0.5" jmIgnoreJunctionFoeProb="0.3"/>
+    <vType id="emergency_ambulance" vClass="emergency" length="5.5" minGap="1.8" maxSpeed="22.0" accel="4.0" decel="6.5" sigma="0.1" color="1,0.5,0" tau="0.8" jmDriveAfterRedTime="0.3" jmIgnoreJunctionFoeProb="0.4"/>
+    
+    <!-- VEHICLE FLOWS - Total: ~1725 vehicles (1575 regular + 100 emergency + 50 ambulances) -->
+    
+    <!-- West to East flows (Left to Right) - 300 vehicles (reduced for better flow) -->
+    <flow id="flow_left0_right" type="car" begin="0" end="3600" number="75" from="left0A0" to="D0right0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_left1_right" type="car_fast" begin="0" end="3600" number="65" from="left1A1" to="D1right1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_left2_right" type="delivery" begin="0" end="3600" number="55" from="left2A2" to="D2right2" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_left3_right" type="car" begin="0" end="3600" number="70" from="left3A3" to="D3right3" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_left0_d3" type="truck" begin="0" end="3600" number="35" from="left0A0" to="A3top0" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- East to West flows (Right to Left) - 300 vehicles (reduced for better flow) -->
+    <flow id="flow_right0_left" type="car" begin="0" end="3600" number="70" from="right0D0" to="A0left0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_right1_left" type="car_fast" begin="0" end="3600" number="65" from="right1D1" to="A1left1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_right2_left" type="delivery" begin="0" end="3600" number="55" from="right2D2" to="A2left2" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_right3_left" type="car" begin="0" end="3600" number="70" from="right3D3" to="A3left3" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_right0_a3" type="truck" begin="0" end="3600" number="40" from="right0D0" to="A0left0" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- South to North flows (Bottom to Top) - 300 vehicles (reduced for better flow) -->
+    <flow id="flow_bottom0_top" type="car" begin="0" end="3600" number="75" from="bottom0A0" to="A3top0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_bottom1_top" type="car_fast" begin="0" end="3600" number="70" from="bottom1B0" to="B3top1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_bottom2_top" type="delivery" begin="0" end="3600" number="60" from="bottom2C0" to="C3top2" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_bottom3_top" type="car" begin="0" end="3600" number="65" from="bottom3D0" to="D3top3" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_bottom0_d3" type="truck" begin="0" end="3600" number="30" from="bottom0A0" to="A3top0" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- North to South flows (Top to Bottom) - 300 vehicles (reduced for better flow) -->
+    <flow id="flow_top0_bottom" type="car" begin="0" end="3600" number="75" from="top0A3" to="A0bottom0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_top1_bottom" type="car_fast" begin="0" end="3600" number="70" from="top1B3" to="B0bottom1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_top2_bottom" type="delivery" begin="0" end="3600" number="60" from="top2C3" to="C0bottom2" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_top3_bottom" type="car" begin="0" end="3600" number="65" from="top3D3" to="D0bottom3" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="flow_top0_right" type="truck" begin="0" end="3600" number="30" from="top0A3" to="A0bottom0" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- Additional Routes - Only valid connections that work -->
+    <!-- Additional West to East flows -->
+    <flow id="extra_left_right_1" type="car" begin="0" end="3600" number="30" from="left1A1" to="D1right1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="extra_left_right_2" type="car" begin="0" end="3600" number="30" from="left2A2" to="D2right2" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- Additional East to West flows -->
+    <flow id="extra_right_left_1" type="car" begin="0" end="3600" number="30" from="right1D1" to="A1left1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="extra_right_left_2" type="car" begin="0" end="3600" number="30" from="right2D2" to="A2left2" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- Additional South to North flows -->
+    <flow id="extra_bottom_top_1" type="car" begin="0" end="3600" number="30" from="bottom1B0" to="B3top1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="extra_bottom_top_2" type="car" begin="0" end="3600" number="30" from="bottom2C0" to="C3top2" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- Additional North to South flows -->
+    <flow id="extra_top_bottom_1" type="car" begin="0" end="3600" number="30" from="top1B3" to="B0bottom1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="extra_top_bottom_2" type="car" begin="0" end="3600" number="30" from="top2C3" to="C0bottom2" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- Bus Routes (Public Transportation) - Valid routes only -->
+    <flow id="bus_route_1" type="bus" begin="0" end="3600" number="20" from="left0A0" to="D0right0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="bus_route_2" type="bus" begin="0" end="3600" number="20" from="bottom0A0" to="A3top0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="bus_route_3" type="bus" begin="0" end="3600" number="20" from="right0D0" to="A0left0" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- Delivery and Service Vehicles - Valid routes only -->
+    <flow id="delivery_1" type="delivery" begin="0" end="3600" number="25" from="left1A1" to="D1right1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="delivery_2" type="delivery" begin="0" end="3600" number="25" from="bottom1B0" to="B3top1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="delivery_3" type="delivery" begin="0" end="3600" number="25" from="right1D1" to="A1left1" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- EMERGENCY VEHICLES - 100 emergency vehicles -->
+    <!-- Emergency vehicles from West to East -->
+    <flow id="emergency_left_right_1" type="emergency" begin="0" end="3600" number="10" from="left0A0" to="D0right0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="emergency_left_right_2" type="emergency" begin="0" end="3600" number="10" from="left1A1" to="D1right1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="emergency_left_right_3" type="emergency" begin="0" end="3600" number="10" from="left2A2" to="D2right2" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- Emergency vehicles from East to West -->
+    <flow id="emergency_right_left_1" type="emergency" begin="0" end="3600" number="10" from="right0D0" to="A0left0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="emergency_right_left_2" type="emergency" begin="0" end="3600" number="10" from="right1D1" to="A1left1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="emergency_right_left_3" type="emergency" begin="0" end="3600" number="10" from="right2D2" to="A2left2" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- Emergency vehicles from South to North -->
+    <flow id="emergency_bottom_top_1" type="emergency" begin="0" end="3600" number="8" from="bottom0A0" to="A3top0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="emergency_bottom_top_2" type="emergency" begin="0" end="3600" number="8" from="bottom1B0" to="B3top1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="emergency_bottom_top_3" type="emergency" begin="0" end="3600" number="8" from="bottom2C0" to="C3top2" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- Emergency vehicles from North to South -->
+    <flow id="emergency_top_bottom_1" type="emergency" begin="0" end="3600" number="6" from="top0A3" to="A0bottom0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="emergency_top_bottom_2" type="emergency" begin="0" end="3600" number="6" from="top1B3" to="B0bottom1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="emergency_top_bottom_3" type="emergency" begin="0" end="3600" number="6" from="top2C3" to="C0bottom2" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- AMBULANCES - 50 ambulance vehicles (faster emergency response) -->
+    <!-- Ambulances from West to East -->
+    <flow id="ambulance_left_right_1" type="emergency_ambulance" begin="0" end="3600" number="6" from="left0A0" to="D0right0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="ambulance_left_right_2" type="emergency_ambulance" begin="0" end="3600" number="6" from="left1A1" to="D1right1" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- Ambulances from East to West -->
+    <flow id="ambulance_right_left_1" type="emergency_ambulance" begin="0" end="3600" number="6" from="right0D0" to="A0left0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="ambulance_right_left_2" type="emergency_ambulance" begin="0" end="3600" number="6" from="right1D1" to="A1left1" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- Ambulances from South to North -->
+    <flow id="ambulance_bottom_top_1" type="emergency_ambulance" begin="0" end="3600" number="5" from="bottom0A0" to="A3top0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="ambulance_bottom_top_2" type="emergency_ambulance" begin="0" end="3600" number="5" from="bottom1B0" to="B3top1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="ambulance_bottom_top_3" type="emergency_ambulance" begin="0" end="3600" number="5" from="bottom2C0" to="C3top2" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- Ambulances from North to South -->
+    <flow id="ambulance_top_bottom_1" type="emergency_ambulance" begin="0" end="3600" number="4" from="top0A3" to="A0bottom0" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="ambulance_top_bottom_2" type="emergency_ambulance" begin="0" end="3600" number="4" from="top1B3" to="B0bottom1" departSpeed="max" departPos="base" departLane="best"/>
+    <flow id="ambulance_top_bottom_3" type="emergency_ambulance" begin="0" end="3600" number="3" from="top2C3" to="C0bottom2" departSpeed="max" departPos="base" departLane="best"/>
+    
+    <!-- PEDESTRIAN FLOWS - Total: ~500 pedestrians -->
+    
+    <!-- Pedestrian flows along A row (westernmost) -->
+    <personFlow id="ped_a_row_1" begin="0" end="3600" personsPerHour="25">
+        <personTrip from="A0B0" to="A3B3" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_a_row_2" begin="0" end="3600" personsPerHour="20">
+        <personTrip from="A1A0" to="A3A2" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_a_row_3" begin="0" end="3600" personsPerHour="20">
+        <personTrip from="A2B2" to="A0B0" modes="public"/>
+    </personFlow>
+    
+    <!-- Pedestrian flows along B row -->
+    <personFlow id="ped_b_row_1" begin="0" end="3600" personsPerHour="28">
+        <personTrip from="B0A0" to="B3C3" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_b_row_2" begin="0" end="3600" personsPerHour="25">
+        <personTrip from="B1B0" to="B3B2" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_b_row_3" begin="0" end="3600" personsPerHour="25">
+        <personTrip from="B2C2" to="B0A0" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_b_row_4" begin="0" end="3600" personsPerHour="22">
+        <personTrip from="B3A3" to="B1B0" modes="public"/>
+    </personFlow>
+    
+    <!-- Pedestrian flows along C row -->
+    <personFlow id="ped_c_row_1" begin="0" end="3600" personsPerHour="28">
+        <personTrip from="C0B0" to="C3D3" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_c_row_2" begin="0" end="3600" personsPerHour="25">
+        <personTrip from="C1C0" to="C3C2" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_c_row_3" begin="0" end="3600" personsPerHour="25">
+        <personTrip from="C2B2" to="C0D0" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_c_row_4" begin="0" end="3600" personsPerHour="22">
+        <personTrip from="C3C2" to="C1B1" modes="public"/>
+    </personFlow>
+    
+    <!-- Pedestrian flows along D row (easternmost) -->
+    <personFlow id="ped_d_row_1" begin="0" end="3600" personsPerHour="25">
+        <personTrip from="D0C0" to="D3C3" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_d_row_2" begin="0" end="3600" personsPerHour="20">
+        <personTrip from="D1D0" to="D3D2" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_d_row_3" begin="0" end="3600" personsPerHour="20">
+        <personTrip from="D2C2" to="D0D1" modes="public"/>
+    </personFlow>
+    
+    <!-- Cross-grid pedestrian movements -->
+    <personFlow id="ped_cross_1" begin="0" end="3600" personsPerHour="25">
+        <personTrip from="A0B0" to="D3C3" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_cross_2" begin="0" end="3600" personsPerHour="20">
+        <personTrip from="A3A2" to="D0D1" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_cross_3" begin="0" end="3600" personsPerHour="20">
+        <personTrip from="B1A1" to="C3D3" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_cross_4" begin="0" end="3600" personsPerHour="18">
+        <personTrip from="C0D0" to="A3B3" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_cross_5" begin="0" end="3600" personsPerHour="18">
+        <personTrip from="D2C2" to="A1A0" modes="public"/>
+    </personFlow>
+    
+    <!-- Shopping/commercial area pedestrians (high density) -->
+    <personFlow id="ped_commercial_1" begin="0" end="3600" personsPerHour="32">
+        <personTrip from="B2B1" to="C2C1" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_commercial_2" begin="0" end="3600" personsPerHour="28">
+        <personTrip from="C2B2" to="B2C2" modes="public"/>
+    </personFlow>
+    <personFlow id="ped_commercial_3" begin="0" end="3600" personsPerHour="25">
+        <personTrip from="B1C1" to="C2B2" modes="public"/>
+    </personFlow>
+    
+</routes>
+
