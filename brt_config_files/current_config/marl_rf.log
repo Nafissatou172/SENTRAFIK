@@ -1,0 +1,93 @@
+2026-05-07 15:31:14,375 [INFO] Lancement de SUMO : sumo -c brt.sumocfg --step-length 0.10 --no-warnings --random
+2026-05-07 15:31:17,820 [INFO] Chargement de la topologie depuis output-new_net.xml ...
+2026-05-07 15:32:24,703 [INFO] Lancement de SUMO : sumo -c brt.sumocfg --step-length 0.10 --no-warnings --random
+2026-05-07 15:32:28,202 [INFO] Chargement de la topologie depuis output-new_net.xml ...
+2026-05-07 15:34:30,109 [INFO] Lancement de SUMO : sumo -c brt.sumocfg --step-length 0.10 --no-warnings --random
+2026-05-07 15:34:33,518 [INFO] Chargement de la topologie depuis output-new.net.xml ...
+2026-05-07 15:34:34,094 [INFO] Topologie chargée : 164 jonctions, 150 tlLogic, voisinage moy=13.2
+2026-05-07 15:34:34,158 [INFO] 164 agents initialisés.
+2026-05-07 15:34:34,158 [INFO] === Démarrage de l'entraînement MARL (Random Forest) ===
+2026-05-07 15:34:34,159 [INFO]   Agents       : 164
+2026-05-07 15:34:34,159 [INFO]   Total steps  : 50000
+2026-05-07 15:34:34,159 [INFO]   Retrain every: 500 pas
+2026-05-07 15:34:34,159 [INFO]   ε            : 0.1  |  γ : 0.9
+2026-05-07 15:34:34,343 [INFO] Pas      0 | Reward/pas:    293.0 | Cumul:      293.0 | Queue tot:     28.0 | Agents entraînés: 0/164
+2026-05-07 15:34:46,507 [INFO] Pas    100 | Reward/pas:    302.0 | Cumul:    32698.5 | Queue tot:     22.0 | Agents entraînés: 0/164
+2026-05-07 15:34:49,145 [INFO] Interruption manuelle — arrêt propre.
+2026-05-11 11:33:07,642 [INFO] Lancement de SUMO : /Library/Frameworks/EclipseSUMO.framework/Versions/Current/EclipseSUMO/bin/sumo -c brt.sumocfg --step-length 1 --no-warnings --random
+2026-05-11 11:33:11,321 [INFO] Chargement de la topologie depuis output-new.net.xml ...
+2026-05-11 11:33:11,907 [INFO] Topologie chargée : 164 jonctions, 150 tlLogic, voisinage moy=13.2
+2026-05-11 11:33:11,942 [INFO] 164 agents initialisés.
+2026-05-11 11:33:11,942 [INFO] === Démarrage de l'entraînement MARL (Random Forest) ===
+2026-05-11 11:33:11,942 [INFO]   Agents       : 164
+2026-05-11 11:33:11,942 [INFO]   Total steps  : 50000
+2026-05-11 11:33:11,942 [INFO]   Retrain every: 500 pas
+2026-05-11 11:33:11,942 [INFO]   ε            : 0.1  |  γ : 0.9
+2026-05-11 11:33:12,108 [INFO] Pas      0 | Reward/pas:    293.0 | Cumul:      293.0 | Queue tot:     28.0 | Agents entraînés: 0/164
+2026-05-11 11:33:23,261 [INFO] Pas    100 | Reward/pas:    320.5 | Cumul:    31417.0 | Queue tot:     10.0 | Agents entraînés: 0/164
+2026-05-11 11:33:34,515 [INFO] Pas    200 | Reward/pas:    317.0 | Cumul:    62703.0 | Queue tot:     14.0 | Agents entraînés: 0/164
+2026-05-11 11:33:46,189 [INFO] Pas    300 | Reward/pas:    313.5 | Cumul:    94154.5 | Queue tot:     18.0 | Agents entraînés: 0/164
+2026-05-11 11:33:57,848 [INFO] Pas    400 | Reward/pas:    322.0 | Cumul:   124901.5 | Queue tot:      9.0 | Agents entraînés: 0/164
+2026-05-11 11:34:55,251 [INFO] Lancement de SUMO : /Library/Frameworks/EclipseSUMO.framework/Versions/Current/EclipseSUMO/bin/sumo -c brt.sumocfg --step-length 1 --no-warnings --random
+2026-05-11 11:34:58,733 [INFO] Chargement de la topologie depuis output-new.net.xml ...
+2026-05-11 11:34:59,372 [WARNING]   14 jonctions 'traffic_light' sans tlLogic (ignorées) : ['5157571133', '11922796129', '6957447606', '6973682508', '11922796136']...
+2026-05-11 11:34:59,372 [INFO] Topologie chargée : 150 feux actifs, 150 tlLogic, voisinage moy=12.6
+2026-05-11 11:34:59,410 [INFO] 150 agents initialisés.
+2026-05-11 11:34:59,410 [INFO] === Démarrage de l'entraînement MARL (Random Forest) ===
+2026-05-11 11:34:59,410 [INFO]   Agents       : 150
+2026-05-11 11:34:59,410 [INFO]   Total steps  : 50000
+2026-05-11 11:34:59,410 [INFO]   Retrain every: 500 pas
+2026-05-11 11:34:59,410 [INFO]   ε            : 0.1  |  γ : 0.9
+2026-05-11 11:34:59,588 [INFO] Pas      0 | Reward/pas:    277.5 | Cumul:      277.5 | Queue tot:     28.0 | Agents entraînés: 0/150
+2026-05-11 11:35:10,362 [INFO] Pas    100 | Reward/pas:    301.0 | Cumul:    29520.5 | Queue tot:     15.0 | Agents entraînés: 0/150
+2026-05-11 11:35:20,743 [INFO] Pas    200 | Reward/pas:    292.0 | Cumul:    59082.5 | Queue tot:     21.0 | Agents entraînés: 0/150
+2026-05-11 11:35:30,943 [INFO] Pas    300 | Reward/pas:    295.5 | Cumul:    88831.0 | Queue tot:     18.0 | Agents entraînés: 0/150
+2026-05-11 11:35:41,195 [INFO] Pas    400 | Reward/pas:    290.5 | Cumul:   117621.0 | Queue tot:     23.0 | Agents entraînés: 0/150
+2026-05-11 11:35:51,687 [INFO] Réentraînement de tous les agents...
+2026-05-11 11:35:57,017 [INFO]   150/150 agents entraînés.
+2026-05-11 11:35:57,018 [INFO] Pas    500 | Reward/pas:    274.5 | Cumul:   147064.5 | Queue tot:     38.0 | Agents entraînés: 150/150
+2026-05-11 11:37:55,742 [INFO] Pas    600 | Reward/pas:    299.0 | Cumul:   176072.5 | Queue tot:     15.0 | Agents entraînés: 150/150
+2026-05-11 11:39:50,985 [INFO] Pas    700 | Reward/pas:    277.0 | Cumul:   203652.0 | Queue tot:     32.0 | Agents entraînés: 150/150
+2026-05-11 11:41:48,710 [INFO] Pas    800 | Reward/pas:    279.0 | Cumul:   231659.5 | Queue tot:     30.0 | Agents entraînés: 150/150
+2026-05-11 11:43:42,072 [INFO] Pas    900 | Reward/pas:    276.5 | Cumul:   258381.5 | Queue tot:     37.0 | Agents entraînés: 150/150
+2026-05-11 11:45:38,161 [INFO] Réentraînement de tous les agents...
+2026-05-11 11:45:59,511 [INFO] Lancement de SUMO : /Library/Frameworks/EclipseSUMO.framework/Versions/Current/EclipseSUMO/bin/sumo -c brt.sumocfg --step-length 1 --no-warnings --random
+2026-05-11 11:46:02,962 [INFO] Chargement de la topologie depuis output-new.net.xml ...
+2026-05-11 11:46:03,574 [WARNING]   14 jonctions 'traffic_light' sans tlLogic (ignorées) : ['5157571133', '6973682508', '11922796136', '6957447606', '5567115953']...
+2026-05-11 11:46:03,575 [INFO] Topologie chargée : 150 feux actifs, 150 tlLogic, voisinage moy=12.6
+2026-05-11 11:46:03,610 [INFO] 150 agents initialisés.
+2026-05-11 11:46:03,610 [INFO] === Démarrage de l'entraînement MARL (Random Forest) ===
+2026-05-11 11:46:03,610 [INFO]   Agents       : 150
+2026-05-11 11:46:03,610 [INFO]   Total steps  : 50000
+2026-05-11 11:46:03,610 [INFO]   Retrain every: 500 pas
+2026-05-11 11:46:03,610 [INFO]   ε            : 0.1  |  γ : 0.9
+2026-05-11 11:46:03,779 [INFO] Pas      0 | Reward/pas:    277.5 | Cumul:      277.5 | Queue tot:     28.0 | Agents entraînés: 0/150
+2026-05-11 11:46:14,793 [INFO] Pas    100 | Reward/pas:    290.5 | Cumul:    29704.5 | Queue tot:     24.0 | Agents entraînés: 0/150
+2026-05-11 11:46:26,176 [INFO] Pas    200 | Reward/pas:    312.0 | Cumul:    59614.5 | Queue tot:      5.0 | Agents entraînés: 0/150
+2026-05-11 11:46:37,606 [INFO] Pas    300 | Reward/pas:    296.5 | Cumul:    89876.0 | Queue tot:     18.0 | Agents entraînés: 0/150
+2026-05-11 11:46:49,037 [INFO] Pas    400 | Reward/pas:    295.5 | Cumul:   118609.5 | Queue tot:     19.0 | Agents entraînés: 0/150
+2026-05-11 11:47:00,240 [INFO] Réentraînement de tous les agents...
+2026-05-11 11:47:05,556 [INFO]   150/150 agents entraînés.
+2026-05-11 11:47:05,557 [INFO] Pas    500 | Reward/pas:    284.0 | Cumul:   147179.0 | Queue tot:     28.0 | Agents entraînés: 150/150
+2026-05-11 11:49:03,053 [INFO] Pas    600 | Reward/pas:    286.0 | Cumul:   175817.5 | Queue tot:     25.0 | Agents entraînés: 150/150
+2026-05-11 11:51:00,768 [INFO] Pas    700 | Reward/pas:    297.5 | Cumul:   204395.5 | Queue tot:     15.0 | Agents entraînés: 150/150
+2026-05-11 11:52:56,353 [INFO] Pas    800 | Reward/pas:    269.0 | Cumul:   232555.0 | Queue tot:     42.0 | Agents entraînés: 150/150
+2026-05-11 11:54:11,038 [INFO]   150/150 agents entraînés.
+2026-05-11 11:54:11,040 [INFO] Pas   1000 | Reward/pas:    271.0 | Cumul:   284013.0 | Queue tot:     39.0 | Agents entraînés: 150/150
+2026-05-11 11:54:52,625 [INFO] Pas    900 | Reward/pas:    269.0 | Cumul:   260136.5 | Queue tot:     42.0 | Agents entraînés: 150/150
+2026-05-11 11:55:57,731 [INFO] Pas   1100 | Reward/pas:    247.0 | Cumul:   310401.0 | Queue tot:     63.0 | Agents entraînés: 150/150
+2026-05-11 11:56:51,697 [INFO] Réentraînement de tous les agents...
+2026-05-11 12:05:29,797 [INFO]   150/150 agents entraînés.
+2026-05-11 12:05:29,799 [INFO] Pas   1000 | Reward/pas:    247.0 | Cumul:   285869.0 | Queue tot:     60.0 | Agents entraînés: 150/150
+2026-05-11 12:07:17,766 [INFO] Pas   1100 | Reward/pas:    271.0 | Cumul:   313067.5 | Queue tot:     39.0 | Agents entraînés: 150/150
+2026-05-11 12:09:09,847 [INFO] Pas   1200 | Reward/pas:    268.5 | Cumul:   338841.5 | Queue tot:     44.0 | Agents entraînés: 150/150
+2026-05-11 12:11:00,313 [INFO] Pas   1300 | Reward/pas:    238.0 | Cumul:   362516.0 | Queue tot:     71.0 | Agents entraînés: 150/150
+2026-05-11 12:12:51,245 [INFO] Pas   1400 | Reward/pas:    225.5 | Cumul:   385724.5 | Queue tot:     83.0 | Agents entraînés: 150/150
+2026-05-11 12:14:40,044 [INFO] Réentraînement de tous les agents...
+2026-05-11 12:23:16,875 [INFO]   150/150 agents entraînés.
+2026-05-11 12:23:16,877 [INFO] Pas   1500 | Reward/pas:    243.5 | Cumul:   408807.5 | Queue tot:     67.0 | Agents entraînés: 150/150
+2026-05-11 12:24:57,130 [INFO] Pas   1600 | Reward/pas:    238.5 | Cumul:   431219.0 | Queue tot:     69.0 | Agents entraînés: 150/150
+2026-05-11 12:26:40,484 [INFO] Pas   1700 | Reward/pas:    231.5 | Cumul:   454291.5 | Queue tot:     75.0 | Agents entraînés: 150/150
+2026-05-11 12:28:17,094 [INFO] Interruption manuelle — arrêt propre.
+2026-05-11 12:28:17,393 [INFO] Connexion TraCI fermée.
+2026-05-11 12:28:20,046 [INFO] Graphiques sauvegardés → marl_rf_results.png
