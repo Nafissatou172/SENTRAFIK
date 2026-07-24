@@ -213,9 +213,9 @@ filename = 'current_state.rou.xml'
 firstDepart = 1
 lastDepart = 3600
 nbPietons = 200
-vTypes = load_vTypes('brt_road.rou.xml')
-routes = load_routes('brt_road.rou.xml')
-busStop_names = get_busStop_names('output.add.xml')
+vTypes = load_vTypes('../config/brt_road.rou.xml')
+routes = load_routes('../config/brt_road.rou.xml')
+busStop_names = get_busStop_names('../config/output.add.xml')
 busStops = load_busStops('data_distribution_congestion.xlsx', busStop_names)
 data = load_data('data_distribution_congestion.xlsx')
 generate(filename, firstDepart, lastDepart)

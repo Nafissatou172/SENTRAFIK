@@ -37,17 +37,18 @@ import traci
 
 
 # ─────────────────────────────────────────────────────────────
-# Chemins (depuis scenario_policier/)
+# Chemins (depuis scenarios/)
 # ─────────────────────────────────────────────────────────────
 SUMO_BINARY_GUI = '/Library/Frameworks/EclipseSUMO.framework/Versions/Current/EclipseSUMO/bin/sumo-gui'
 SUMO_BINARY_CMD = '/Library/Frameworks/EclipseSUMO.framework/Versions/Current/EclipseSUMO/bin/sumo'
 
 # Chemins absolus basés sur l'emplacement du script
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-SUMO_CONFIG = 'brt.sumocfg'
-ROUTES_FILE = 'brt_road.rou.xml'
-MODEL_PATH = os.path.join(SCRIPT_DIR, 'Model', 'policier_model_generic_v2.pkl')
-SCALER_PATH = os.path.join(SCRIPT_DIR, 'Model', 'policier_scaler_generic_v2.pkl')
+PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
+SUMO_CONFIG = os.path.join(PROJECT_ROOT, 'config', 'brt.sumocfg')
+ROUTES_FILE = os.path.join(PROJECT_ROOT, 'config', 'brt_road.rou.xml')
+MODEL_PATH = os.path.join(PROJECT_ROOT, 'Model', 'policier_model_generic_v2.pkl')
+SCALER_PATH = os.path.join(PROJECT_ROOT, 'Model', 'policier_scaler_generic_v2.pkl')
 
 BRT_VTYPE = "BRT"
 BRT_PRIORITY_DISTANCE = 200.0

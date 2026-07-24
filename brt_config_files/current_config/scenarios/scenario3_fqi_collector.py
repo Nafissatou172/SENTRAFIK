@@ -35,9 +35,10 @@ import traci
 #  CONFIGURATION
 # ═════════════════════════════════════════════════════════════════════════════
 
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 SUMO_BINARY = "/Library/Frameworks/EclipseSUMO.framework/Versions/Current/EclipseSUMO/bin/sumo"
-SUMO_CFG    = "brt.sumocfg"
-NET_XML     = "output-new.net.xml"
+SUMO_CFG    = os.path.join(PROJECT_ROOT, 'config', 'brt.sumocfg')
+NET_XML     = os.path.join(PROJECT_ROOT, 'config', 'output.net.xml')
 
 STEP_LENGTH     = 1       # pas de simulation en secondes
 MIN_GREEN_STEPS = 15      # durée minimale d'une phase (sécurité)
@@ -351,6 +352,8 @@ def main():
                         help="Fichier de sortie (défaut: data/transitions.pkl)")
     args = parser.parse_args()
 
+    # Résoudre les chemins relatifs par rapport à PROJECT_ROOT
+    args.output = os.path.join(PROJECT_ROOT, args.output)
     os.makedirs(os.path.dirname(args.output) or '.', exist_ok=True)
 
     # Charger la topologie

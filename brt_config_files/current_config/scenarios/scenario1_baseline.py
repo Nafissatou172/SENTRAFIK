@@ -34,9 +34,10 @@ import traci
 # ─────────────────────────────────────────────────────────────
 # Constantes
 # ─────────────────────────────────────────────────────────────
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 SUMO_BINARY_GUI = '/Library/Frameworks/EclipseSUMO.framework/Versions/Current/EclipseSUMO/bin/sumo-gui'
 SUMO_BINARY_CMD = '/Library/Frameworks/EclipseSUMO.framework/Versions/Current/EclipseSUMO/bin/sumo'
-SUMO_CONFIG = 'brt.sumocfg'
+SUMO_CONFIG = os.path.join(PROJECT_ROOT, 'config', 'brt.sumocfg')
 STEP_LENGTH = 1  # Durée d'un pas de simulation en secondes (Valeur idéale pour RL)
 
 # IDs des flux BRT à surveiller (préfixes)
@@ -386,17 +387,16 @@ def main():
         description="Collecte de métriques de trafic SUMO pour le projet SENTRAFIK (BRT Dakar)")
     parser.add_argument('--no-gui', action='store_true',
                         help="Lancer SUMO sans l'interface graphique (mode console)")
-    parser.add_argument('--output', '-o', default='data/traffic_metrics_results.xlsx',
-                        help="Nom du fichier Excel de sortie (défaut: data/traffic_metrics_results.xlsx)")
+    parser.add_argument('--output', '-o', default='data/scenario1/traffic_metrics_results.xlsx',
+                        help="Nom du fichier Excel de sortie (défaut: data/scenario1/traffic_metrics_results.xlsx)")
     parser.add_argument('--step-length', type=float, default=STEP_LENGTH,
                         help=f"Durée d'un pas de simulation en secondes (défaut: {STEP_LENGTH})")
     args = parser.parse_args()
 
-    # Forcer l'enregistrement dans le dossier data/ (relatif au script)
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    data_dir = os.path.join(script_dir, 'data')
+    # Forcer l'enregistrement dans le dossier data/ (relatif au projet)
+    data_dir = os.path.join(PROJECT_ROOT, 'data', 'scenario1')
     os.makedirs(data_dir, exist_ok=True)
-    # Si l'utilisateur passe juste un nom de fichier, on le place dans data/
+    # Si l'utilisateur passe juste un nom de fichier, on le place dans data/scenario1/
     output_basename = os.path.basename(args.output)
     args.output = os.path.join(data_dir, output_basename)
 

@@ -98,6 +98,7 @@ def fqi_train_agent(transitions: list, n_iterations: int, agent_id: str) -> Extr
 
 def main():
     parser = argparse.ArgumentParser(description="FQI Train — Entraînement offline")
+    PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     parser.add_argument('--input', '-i', default='data/transitions.pkl',
                         help="Fichier de transitions (défaut: data/transitions.pkl)")
     parser.add_argument('--iterations', '-n', type=int, default=8,
@@ -105,6 +106,10 @@ def main():
     parser.add_argument('--output', '-o', default='data/fqi_models/',
                         help="Dossier de sortie pour les modèles (défaut: data/fqi_models/)")
     args = parser.parse_args()
+
+    # Résoudre les chemins relatifs par rapport à PROJECT_ROOT
+    args.input = os.path.join(PROJECT_ROOT, args.input)
+    args.output = os.path.join(PROJECT_ROOT, args.output)
 
     # Charger les données
     log.info(f"Chargement des transitions depuis {args.input} ...")

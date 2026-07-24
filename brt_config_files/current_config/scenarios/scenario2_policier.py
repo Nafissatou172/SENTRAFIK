@@ -27,9 +27,10 @@ import traci
 # ─────────────────────────────────────────────────────────────
 # Constantes
 # ─────────────────────────────────────────────────────────────
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 SUMO_BINARY_GUI = '/Library/Frameworks/EclipseSUMO.framework/Versions/Current/EclipseSUMO/bin/sumo-gui'
 SUMO_BINARY_CMD = '/Library/Frameworks/EclipseSUMO.framework/Versions/Current/EclipseSUMO/bin/sumo'
-SUMO_CONFIG = 'brt.sumocfg'
+SUMO_CONFIG = os.path.join(PROJECT_ROOT, 'config', 'brt.sumocfg')
 STEP_LENGTH = 1
 BRT_FLOW_PREFIXES = ['brt_flow_b1', 'brt_flow_b2', 'brt_flow_b3']
 SAMPLING_INTERVAL = 10  # Pour la collecte des métriques
@@ -514,8 +515,8 @@ def main():
         description="SENTRAFIK Scenario 2: Contrôle Policier Intelligent (Dakar BRT)")
     parser.add_argument('--no-gui', action='store_true',
                         help="Lancer SUMO sans l'interface graphique (mode console)")
-    parser.add_argument('--output', '-o', default='data/scenario2_results.xlsx',
-                        help="Nom du fichier Excel de sortie (défaut: data/scenario2_results.xlsx)")
+    parser.add_argument('--output', '-o', default='data/scenario2/scenario2_results.xlsx',
+                        help="Nom du fichier Excel de sortie (défaut: data/scenario2/scenario2_results.xlsx)")
     parser.add_argument('--min-green', type=int, default=10, 
                         help="Temps de vert minimum (s)")
     parser.add_argument('--step-length', type=float, default=STEP_LENGTH,
@@ -523,8 +524,7 @@ def main():
     args = parser.parse_args()
 
     # Gestion du dossier data/
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    data_dir = os.path.join(script_dir, 'data')
+    data_dir = os.path.join(PROJECT_ROOT, 'data', 'scenario2')
     os.makedirs(data_dir, exist_ok=True)
     output_basename = os.path.basename(args.output)
     args.output = os.path.join(data_dir, output_basename)

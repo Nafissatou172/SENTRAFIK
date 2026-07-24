@@ -38,9 +38,10 @@ import traci
 #  CONFIGURATION
 # ═════════════════════════════════════════════════════════════════════════════
 
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 SUMO_BINARY = "/Library/Frameworks/EclipseSUMO.framework/Versions/Current/EclipseSUMO/bin/sumo"
-SUMO_CFG    = "brt.sumocfg"
-NET_XML     = "output-new.net.xml"
+SUMO_CFG    = os.path.join(PROJECT_ROOT, 'config', 'brt.sumocfg')
+NET_XML     = os.path.join(PROJECT_ROOT, 'config', 'output.net.xml')
 
 STEP_LENGTH       = 1
 MIN_GREEN_STEPS   = 15
@@ -418,11 +419,15 @@ def main():
     parser = argparse.ArgumentParser(description="FQI Eval — Évaluation des modèles entraînés")
     parser.add_argument('--models', '-m', default='data/fqi_models/',
                         help="Dossier des modèles entraînés")
-    parser.add_argument('--output', '-o', default='data/scenario3_fqi_results.xlsx',
+    parser.add_argument('--output', '-o', default='data/scenario3/scenario3_fqi_results.xlsx',
                         help="Fichier Excel de sortie")
     parser.add_argument('--no-gui', action='store_true',
                         help="Désactiver le GUI SUMO")
     args = parser.parse_args()
+
+    args.models = os.path.join(PROJECT_ROOT, args.models)
+    args.output = os.path.join(PROJECT_ROOT, args.output)
+    os.makedirs(os.path.dirname(args.output) or '.', exist_ok=True)
 
     # Charger topologie et modèles
     agents_info = load_topology(NET_XML)
