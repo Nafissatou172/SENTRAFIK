@@ -14,9 +14,9 @@ TRANSITIONS_FILE = os.path.join(INPUT_DIR, "transitions.pkl")
 MODELS_DIR = os.path.join(INPUT_DIR, "fqi_models")
 
 FILES_COMP = {
-    "Baseline (Statique)": os.path.join(INPUT_DIR, "scenario1/scenario1-NewNet-VersionFinale.xlsx"),
-    "Policier (Priorité)": os.path.join(INPUT_DIR, "scenario2/scenario2-NewNet-VersionFinale-optimisée.xlsx"),
-    "MARL FQI (IA)": os.path.join(INPUT_DIR, "scenario3/scenario3_fqi_results-version3.xlsx")
+    "Baseline (Statique)": os.path.join(INPUT_DIR, "scenario1/traffic_metrics_results.xlsx"),
+    "Policier (Priorité)": os.path.join(INPUT_DIR, "scenario2/scenario2_results.xlsx"),
+    "MARL FQI (IA)": os.path.join(INPUT_DIR, "scenario3/scenario3_fqi_results.xlsx")
 }
 
 # Création du dossier de sortie
@@ -68,6 +68,18 @@ def plot_global_comparison():
         return
 
     df = pd.DataFrame(data)
+
+    # Export des données sous forme de tableau Excel
+    excel_path = os.path.join(OUTPUT_DIR, "01_comparatif_global.xlsx")
+    df_export = df.rename(columns={
+        'label': 'Scénario',
+        'vitesse_reseau': 'Vitesse Réseau (km/h)',
+        'vitesse_brt': 'Vitesse BRT (km/h)',
+        'temps_perdu': 'Temps Perdu / véhicule (min)',
+        'teleports': 'Téléportations (blocages)'
+    })
+    df_export.to_excel(excel_path, index=False)
+    print(f"✅ Données du graphique exportées dans {excel_path}")
 
     metrics = [
         ('vitesse_reseau', 'Vitesse Réseau', 'km/h',  True),
